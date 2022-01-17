@@ -13,12 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/menu', 'App\Http\Controllers\MenuController@index');
+
+Route::get('/menu/{category}', 'App\Http\Controllers\MenuController@category');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test2', function () {
-    return view('test.test');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/test3', 'Test3Controller@index')->name('test3');
+require __DIR__.'/auth.php';
