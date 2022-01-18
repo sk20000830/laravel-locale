@@ -1,12 +1,17 @@
-@extends('layouts.navbar')
+
+@extends('layouts.header')
 
 @section('title','menu')
 
+@if (Auth::check())
+@include('layouts.navbar2')
+@else
+@include('layouts.navbar')
+@endif
+
+
 @section('content')
 
-@if (Auth::check())
-<h1 class="alert alert-success text-center">USER: {{$user->name_sei}} {{$user->name_sei}}</h1>
-@endif
     <div class="container text-center">
         <h1 class="header">MENU</h1>
 
@@ -15,7 +20,7 @@
             <tr>
             @foreach($mains as $main)
                 <td class="px-5">
-                    <a href="">      
+                    <a href="/item/{{$main->id}}">      
                         <img class="menuImage" src="{{$main->menu_pic}}" alt="no image"> 
                         <h3>{{$main->menu_name}}</h3>
                         <h3>{{$main->menu_price}}$</h3>
@@ -31,7 +36,7 @@
             <tr>
             @foreach($sides as $side)
                 <td class="px-5">
-                    <a href="">      
+                    <a href="item/{{$side->id}}">      
                         <img class="menuImage" src="{{$side->menu_pic}}" alt="no image"> 
                         <h3>{{$side->menu_name}}</h3>
                         <h3>{{$side->menu_price}}$</h3>
@@ -46,7 +51,7 @@
             <tr>
             @foreach($deserts as $desert)
                 <td class="px-5">
-                    <a href="">      
+                    <a href="item/{{$desert->id}}">      
                         <img class="menuImage" src="{{$desert->menu_pic}}" alt="no image"> 
                         <h3>{{$desert->menu_name}}</h3>
                         <h3>{{$desert->menu_price}}$</h3>
@@ -61,7 +66,7 @@
             <tr>
             @foreach($drinks as $drink)
                 <td class="px-5">
-                    <a href="">      
+                    <a href="item/{{$drink->id}}">      
                         <img class="menuImage" src="{{$drink->menu_pic}}" alt="no image"> 
                         <h3>{{$drink->menu_name}}</h3>
                         <h3>{{$drink->menu_price}}$</h3>
@@ -73,4 +78,6 @@
     </div> 
 
 @endsection
+
+@extends('layouts.footer')
     

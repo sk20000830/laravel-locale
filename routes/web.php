@@ -14,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/menu', 'App\Http\Controllers\MenuController@index');
+Route::get('/', 'App\Http\Controllers\MenuController@index');
 
-Route::get('/menu/{category}', 'App\Http\Controllers\MenuController@category');
+Route::get('/category/{category}', 'App\Http\Controllers\MenuController@category');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/item/{item}', 'App\Http\Controllers\MenuController@item');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

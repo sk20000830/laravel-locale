@@ -1,7 +1,13 @@
-@extends('layouts.navbar')
+@extends('layouts.header')
 
+@section('title','menu')
 
-@section('title','category')
+@if (Auth::check())
+@include('layouts.navbar2')
+@else
+@include('layouts.navbar')
+@endif
+
 
 @section('content')
 
@@ -12,7 +18,7 @@
                 <tr>
             @foreach($items as $item)
                     <td class="px-5">
-                        <a href="">      
+                        <a href="/item/{{$item->id}}">      
                             <img class="menuImage" src="{{$item->menu_pic}}" alt="no image"> 
                             <h3>{{$item->menu_name}}</h3>
                             <h3>{{$item->menu_price}}$</h3>
@@ -26,6 +32,7 @@
 
 @endsection
     
+@extends('layouts.footer')
     
 
 

@@ -1,7 +1,14 @@
  
-@extends('layouts.navbar')
+@extends('layouts.header')
 
-@section('title','register')
+@section('title','menu')
+
+@if (Auth::check())
+@include('layouts.navbar2')
+@else
+@include('layouts.navbar')
+@endif
+
 
 @section('content')
 
@@ -98,5 +105,7 @@
                 </form>
                 <br><br>
             </div>
-        
+            
 @endsection
+
+@extends('layouts.footer')

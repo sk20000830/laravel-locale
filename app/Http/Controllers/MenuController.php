@@ -29,7 +29,17 @@ class MenuController extends Controller
 
     public function category(Request $request, string $category)
     {
+        $user= Auth::user();
+
         $items = Menu::where('category', $category)->get();
-        return view('menu.category', ['items' => $items, 'category' => $category]);
+        return view('menu.category', ['user' => $user, 'items' => $items, 'category' => $category]);
+    }
+
+    public function item(Request $request, int $item)
+    {
+        $user= Auth::user();
+
+        $items = Menu::where('id', $item)->first();
+        return view('menu.item', ['user' => $user, 'items' => $items]);
     }
 }

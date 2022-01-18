@@ -1,6 +1,13 @@
-@extends('layouts.navbar')
+@extends('layouts.header')
 
-@section('title','login')
+@section('title','menu')
+
+@if (Auth::check())
+@include('layouts.navbar2')
+@else
+@include('layouts.navbar')
+@endif
+
 
 @section('content')
 
@@ -57,5 +64,6 @@
         </div>
   
 
-
 @endsection
+
+@extends('layouts.footer')

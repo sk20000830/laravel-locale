@@ -1,4 +1,6 @@
 
+
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
              <!-- trigger button-->
@@ -19,18 +21,27 @@
                         </a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a href="/register" 
-                          class="nav-link">Register
+                        <a href="/cart" 
+                          class="nav-link"><i class="fas fa-shopping-cart"></i>
                         </a>
-                    </li>    
+                    </li>
                     <li class="nav-item mx-3">
-                        <a href="/login" 
-                          class="nav-link">login
-                        </a>
-                    </li>  
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')" class="nav-link" 
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </li>                                           
                  </ul>
              </div>
+             <a href="/profile"
+                          class="text-decoration-none text-white"><span class="fw-bold fs-3 me-3">HELLO!</span> {{$user->name_sei .' '. $user->name_mei}}
+             </a>
         </div>
     </nav>
-  
 
+
+  
