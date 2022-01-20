@@ -18,6 +18,8 @@ class MenuController extends Controller
 
     public function index(Request $request)
     {
+        // session()->flush();
+
         $user= Auth::user();
 
         $mains = Menu::where('category', 'main')->get();

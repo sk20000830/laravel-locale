@@ -1,6 +1,10 @@
+@extends('layouts.footer')
+
 @extends('layouts.header')
 
 @section('title','menu')
+
+@section('content')
 
 @if (Auth::check())
 @include('layouts.navbar2')
@@ -8,8 +12,6 @@
 @include('layouts.navbar')
 @endif
 
-
-@section('content')
 
 
 
@@ -21,15 +23,25 @@
             <p class="text-black fw-bold">ingredient</p>
             <h4 >{{$items->ingredient}}</h4>
         </div>
-        <form action="{{ url ('/item/$items->id')}}" method="POST">
+@if (Auth::check())
+        <form action="{{ route('cartlist_store')}}" method="POST">
+        @csrf
             <input type="number" name="quantity" value="1" class="quantity">
+            <input type="hidden" name="price" value="{{$items->menu_price}}">
+            <input type="hidden" name="menu_id" value="{{$items->id}}">
+            <input type="hidden" name="user_id" value="{{$user->id}}">
             <input type="submit" name="sub" value="Add to Cart">
         </form>
+@else
+        <a href="/login" class="btn btn-success">Login to Order</a>
+@endif
     </div> 
+
+    <br><br>
 
 @endsection
     
-@extends('layouts.footer')
+
     
 
 

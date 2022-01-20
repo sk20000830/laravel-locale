@@ -1,7 +1,10 @@
+@extends('layouts.footer')
 
 @extends('layouts.header')
 
 @section('title','menu')
+
+@section('content')
 
 @if (Auth::check())
 @include('layouts.navbar2')
@@ -9,8 +12,6 @@
 @include('layouts.navbar')
 @endif
 
-
-@section('content')
 
     <div class="container text-center">
         <h1 class="header">MENU</h1>
@@ -79,5 +80,4 @@
 
 @endsection
 
-@extends('layouts.footer')
     

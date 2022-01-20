@@ -1,15 +1,16 @@
+@extends('layouts.footer')
+
 @extends('layouts.header')
 
 @section('title','menu')
+
+@section('content')
 
 @if (Auth::check())
 @include('layouts.navbar2')
 @else
 @include('layouts.navbar')
 @endif
-
-
-@section('content')
 
 <h2 class="text-center my-5"> {{$category}}</h2>
     <div class="container text-center">
