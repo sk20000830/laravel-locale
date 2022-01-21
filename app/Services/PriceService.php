@@ -31,11 +31,12 @@ class PriceService{
 
                 $total += ($q * $item->menu_price);
             }
-            
-            return view('cart', compact('user', 'items', 'quantity', 'total'));
+
+            return compact('user', 'items', 'quantity', 'total');
+             
 
         }else{
-            return view('cart', ['user' => $user])->with('msg', 'no products');
+            return ['user' => $user, 'msg' => 'false'];
         }
     }
 }

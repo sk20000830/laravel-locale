@@ -20,9 +20,7 @@ class CartController extends Controller
         
         $result = $price_service->payment($request);
 
-        return $result;
-
-        
+        return view('cart', $result);
 
     }
     
