@@ -12,8 +12,10 @@ class MenuController extends Controller
 {
     public function all(Request $request)
     {
+        $user= Auth::user();
+        
         $items = Menu::all();
-        return view('menu', ['items' => $items]);
+        return view('menu', ['items' => $items, 'user' => $user]);
     }
 
     public function index(Request $request)
@@ -44,4 +46,13 @@ class MenuController extends Controller
         $items = Menu::where('id', $item)->first();
         return view('menu.item', ['user' => $user, 'items' => $items]);
     }
+
+    // public function showCart(Request $request)
+    // {
+    //     $user= Auth::user();
+        
+    //     $items[$menu_ids] = Menu::whereIn('id', $request->menu_ids)->get();
+    //     return route('App\Http\Controllers\CartController@index', ['items' => $items, 'user' => $user]);
+    // }
+
 }

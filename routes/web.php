@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', 'App\Http\Controllers\MenuController@index');
+Route::get('/', 'App\Http\Controllers\MenuController@index')->name('index');
 
 Route::get('/category/{category}', 'App\Http\Controllers\MenuController@category');
 

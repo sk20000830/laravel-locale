@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a href="/cart" 
+                        <a href="{{route('cartlist_index')}}" 
                           class="nav-link"><i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
