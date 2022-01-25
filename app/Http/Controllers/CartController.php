@@ -1,24 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\Menu;
 use Illuminate\Http\Request;
-use App\Services\PriceService;
+use App\Services\CartService;
 
 class CartController extends Controller
 {
 
-    private $price_service;
+    private $cart_service;
     // public function __construct(PriceService $price_service)
     // {
     //     $this->price = $price_service;
     // }
     
-    public function index(PriceService $price_service, Request $request)
+    public function index(CartService $cart_service, Request $request)
     {
         
-        $result = $price_service->payment($request);
+        $result = $cart_service->payment($request);
 
         return view('cart', $result);
 
@@ -42,20 +43,9 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Cartservice $cart_service, Request $request)
     {
-        $sessionCartData = $request->session()->get('cartData');
-        
-        if(isset($sessionCartData[$request->menu_id])){
-
-            $sessionCartData[$request->menu_id] = (int)$sessionCartData[$request->menu_id] + (int)$request->quantity;
-            
-        }else{
-
-            $sessionCartData[$request->menu_id] = (int)$request->quantity;
-        }
-        
-        $request->session()->put('cartData', $sessionCartData);
+        $cart_service->saveToCart($request);
 
         return redirect()->route('cartlist_index');
     }
@@ -100,8 +90,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user= Auth::user();
+        $request->session()->remove('cartData');
+
+        return view('cart', ['user' => $user, 'msg' => 'false']);
     }
 }

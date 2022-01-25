@@ -10,4 +10,14 @@ class Menu extends Model
     // use HasFactory;
 
     protected $table = "menus";
+
+
+    // public function orderDetails() 
+    // {
+
+    //     return $this->hasMany('App\Models\OrderDetail', 'menu_id', 'id');
+    
+    // }
+
+    
 }

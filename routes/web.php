@@ -13,10 +13,12 @@ Route::get('/cartlist', 'App\Http\Controllers\CartController@index')->name('cart
 
 Route::post('/cartlist', 'App\Http\Controllers\CartController@store')->name('cartlist_store');
 
-// Route::resource('cartlist', 'App\Http\Controllers\CartController', ['except' => ['']]);
+Route::get('/cartlist/remove', 'App\Http\Controllers\CartController@destroy')->name('cartlist_remove');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::get('/place-order', 'App\Http\Controllers\OrderController@placeOrder');
+
+Route::get('/order-success', 'App\Http\Controllers\OrderController@orderSuccess')->name('order-success');
+
+
 
 require __DIR__.'/auth.php';
