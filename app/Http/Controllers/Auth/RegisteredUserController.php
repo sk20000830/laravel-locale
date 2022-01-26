@@ -41,14 +41,13 @@ class RegisteredUserController extends Controller
             'phone_number1' => ['required', 'numeric', 'digits_between:1,5'],
             'phone_number2' => ['required', 'numeric', 'digits_between:1,5'],
             'phone_number3' => ['required', 'numeric', 'digits_between:1,5'],
-            'post_code1' => ['required', new Postcode()],
+            'post_code1' => ['required', new Postcode],
             'post_code2' => ['required', 'numeric', 'digits:4'],
             'adress' => ['required', 'string', 'max:255'],
             'birthday' => ['required', 'date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // 
 
         $user = User::create([
             'name_sei' => $request->name_sei,
