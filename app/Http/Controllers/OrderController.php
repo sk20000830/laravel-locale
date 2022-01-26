@@ -16,8 +16,8 @@ class OrderController extends Controller
     public function placeOrder(OrderService $order_service, Request $request)
     {
         $user= Auth::user();
-        $orderId = $order_service->saveToOrders($request);
-        $order_service->saveToOrderDetails($request, $orderId);
+
+        $orderId = $order_service->saveOrderData($request);
         
         return redirect()->route('order-success', ['orderId' => $orderId]);
     }

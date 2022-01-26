@@ -7,39 +7,44 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Traits\CartTrait;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 
 
     class OrderService
     {
 
-        public function saveToOrders($request)
+        public function saveOrderData($request)
         {
             $user= Auth::user();
         
-            $data = Order::create([
+            // トランザクション開始
+            DB::beginTransaction();
+
+            $order = Order::create([
                 'user_id' => $user->id
             ]);
-
-            // $request->session()->put('orderId', $data->id);
-            return $data->id;
-        }
-
-        public function saveToOrderDetails($request, $orderId)
-        {
+        
+            // セッションからカートデータを取得
             $quantity = $request->session()->get('cartData');
+            // 日付取得
             $date = Carbon::now(); 
-
             // keyをtableのカラム名と一致させ、直接insertするための連想配列を作成
             foreach($quantity as $menuId => $q)
             {
                 $data[] = 
-                    array('menu_id' => $menuId, 'quantity' => $q, 'order_id' => $orderId, 'created_at' => $date, 'updated_at' => $date);
+                    array('menu_id' => $menuId, 'quantity' => $q, 'order_id' => $order->id, 'created_at' => $date, 'updated_at' => $date);
             }
             
             $data = OrderDetail::insert($data); 
 
+            // トランザクション終了
+            DB::commit();
+
             //cartDataをセッションから削除
             $request->session()->remove('cartData');
+
+            return $order->id;
             
 
         }

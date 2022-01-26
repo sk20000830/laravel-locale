@@ -23,7 +23,7 @@
                 
                 @foreach ($datas as $data)
 
-                    <h1>{{$data->menus->menu_name}}</h1>
+                    <h1 class="mt-5">{{$data->menus->menu_name}}</h1>
                     <h1>{{$data->quantity}}</h1>
 
                @endforeach
