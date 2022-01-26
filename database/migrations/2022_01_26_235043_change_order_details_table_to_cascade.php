@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeOrderDetailsTable extends Migration
+class ChangeOrderDetailsTableToCascade extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class ChangeOrderDetailsTable extends Migration
     public function up()
     {
         Schema::table('order_details', function (Blueprint $table) {
-            $table->foreignId('menu_id')->change();
-            $table->foreignId('order_id')->change();
+            $table->foreignId('order_id')->references('id')->on('orders')->cascadeOnDelete();
         });
     }
 
