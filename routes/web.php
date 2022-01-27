@@ -13,6 +13,8 @@ Route::get('/cartlist', 'App\Http\Controllers\CartController@index')->name('cart
 
 Route::post('/cartlist', 'App\Http\Controllers\CartController@store')->name('cartlist_store');
 
+Route::post('cartlist/update', 'App\Http\Controllers\CartController@update')->name('cartlist_update');
+
 Route::get('/cartlist/remove', 'App\Http\Controllers\CartController@destroy')->name('cartlist_remove');
 
 Route::get('/place-order', 'App\Http\Controllers\OrderController@placeOrder');

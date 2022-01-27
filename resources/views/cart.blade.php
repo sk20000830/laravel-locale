@@ -39,7 +39,14 @@
                                 <td>{{$item->menu_name}}</td>
                                 <td>{{$item->menu_price}}$</td>
                                 <form action="" method="POST"></form>
-                                <td>{{$quantity[$item->id]}}</td>
+                                <td>
+                                    <form action="{{route('cartlist_update')}}" method=POST>
+                                        @csrf
+                                        <input type="hidden" name="menu_id" value="{{$item->id}}">
+                                        <input type="number" name="quantity" value="{{$quantity[$item->id]}}" class="quantity">
+                                        <button class="btn btn-success"><i class="fas fa-check"></i></button>
+                                    </form>
+                                </td>
                                 <td>{{$item->menu_price * $quantity[$item->id]}}$</td>
                             </tr>
                         @endforeach    

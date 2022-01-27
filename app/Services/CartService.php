@@ -50,4 +50,21 @@ class CartService{
         
         $request->session()->put('cartData', $sessionCartData);
     }
+
+    public function updateCart($request){
+
+        $sessionCartData = $request->session()->get('cartData');
+
+        if($request->quantity > 0)
+        {
+            $sessionCartData[$request->menu_id] = (int)$request->quantity;
+
+            $request->session()->put('cartData', $sessionCartData);
+        }
+        else
+        {
+            unset($sessionCartData[$request->menu_id]);
+            $request->session()->put('cartData', $sessionCartData);
+        }
+    }
 }
