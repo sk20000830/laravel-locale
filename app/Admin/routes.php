@@ -13,8 +13,11 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
-    $router->resource('users', UsersController::class);
+    $router->resource('users', UserController::class);
 
-    
+    $router->resource('orders', OrderController::class);
 
+    $router->resource('order-details', OrderDetailController::class);
+
+    $router->resource('menus', MenuController::class);
 });
