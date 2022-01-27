@@ -15,4 +15,6 @@ Route::group([
 
     $router->resource('users', UsersController::class);
 
+    
+
 });
