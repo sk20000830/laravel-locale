@@ -34,6 +34,13 @@ class OrderController extends AdminController
         $grid->column('order_status', __('Order status'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
+        
+        $grid->actions(function ($actions) {
+
+            $od_id= $actions->getKey();
+            $actions->append('<a href="/admin/order-details?order_id='.$od_id.'" class="btn btn-info">details</a>');
+        
+        });
 
         return $grid;
     }
